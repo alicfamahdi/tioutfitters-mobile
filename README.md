@@ -38,10 +38,11 @@ Object `const` memiliki beberapa sifat dan restriksi:
 
 ## Jelaskan bagaimana cara kamu mengimplementasikan *checklist-checklist* di atas.
 
-- Membuat repository git baru
-- Mengenerate project flutter baru pada folder repo dan mengetes dengan `flutter run`
-- Menerapkan *clean architecture* dengan membuat file baru menu.dart pada folder /lib project
-- Modifikasi widget MyHomePage dari stateful menjadi stateless
-- Membuat button cards dengan membuat classes baru ItemHomepage dan ItemCard
-- Membuat list warna yang akan digunakan untuk button
-- Set button agar menunjukkan snackbar ketika di-click
+- Membuat *repository git* baru.
+- Men-*generate project flutter* baru pada folder repo dan mengetes dengan `flutter run`.
+- Menerapkan *clean architecture* dengan membuat file baru `menu.dart` pada folder /lib *project*.
+- Modifikasi *widget MyHomePage* dari `stateful` menjadi `stateless`.
+- Membuat *button cards* dengan membuat *classes* baru `ItemHomepage` dan `ItemCard`.
+- Membuat *list* warna yang akan digunakan untuk *button*.
+- Set button agar menunjukkan `snackbar` ketika di-*click*.
+- Membuat README dan menjawab pertanyaan-pertanyaan.
