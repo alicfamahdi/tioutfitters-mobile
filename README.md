@@ -1,5 +1,73 @@
 # 
 
+# Tugas 8
+
+## Apa kegunaan `const` di Flutter? Jelaskan apa keuntungan ketika menggunakan `const` pada kode Flutter. Kapan sebaiknya kita menggunakan `const`, dan kapan sebaiknya tidak digunakan?
+
+`const` digunakan ketika nilai suatu variabel sudah diketahui sejak *compile time* dan tidak akan berubah. Penggunaan `const` sebenarnya hanya memberi tahu *compiler* bahwa variabel tidak akan berubah, maka hanya perlu membuat 1 salinan dari variabel tersebut, lalu dapat di-*reference* terus menerus pada 1 salinan tersebut. Ini berguna karena jika tanpa `const`, suatu *object* di-*mention* berulang-ulang kali, meskipun untuk setiap *mention* itu *object* bernilai sama, akan menggunakan banyak *memory*.
+
+Selain itu menghemat *memory*, `const` juga memberi tahu Flutter bahwa suatu *object* tidak perlu di-*rebuild* karena tidak akan berubah. Sehingga *performance* app akan lebih baik secara keseluruhan.
+
+## Jelaskan dan bandingkan penggunaan *Column* dan *Row* pada Flutter. Berikan contoh implementasi dari masing-masing layout widget ini!
+
+Widget `Column` digunakan untuk menyusun widget secara vertikal, sedangkan widget `Row` digunakan untuk menyusun widget secara horizontal. Keduanya bisa memiliki suatu list child widgets. Child widget tersebut bisa juga berupa widget `Row`, `Column`, atau widget kompleks lainnya. *Alignment* dan *stretch/constrain* suatu child widget dapat dispesifikasikan.
+
+Contoh implementasi `Row`:
+Row(
+  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  children: [
+    Image.asset('images/pic1.jpg'),
+    Image.asset('images/pic2.jpg'),
+    Image.asset('images/pic3.jpg'),
+  ],
+);
+
+![alt text](tugas-8-row-spaceevenly-visual.png)
+
+Contoh implementasi `Column`:
+Column(
+  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  children: [
+    Image.asset('images/pic1.jpg'),
+    Image.asset('images/pic2.jpg'),
+    Image.asset('images/pic3.jpg'),
+  ],
+);
+
+![alt text](tugas-8-column-visual.png)
+
+## Sebutkan apa saja elemen input yang kamu gunakan pada halaman *form* yang kamu buat pada tugas kali ini. Apakah terdapat elemen input Flutter lain yang tidak kamu gunakan pada tugas ini? Jelaskan!
+
+Saya menggunakan `TextFormField` untuk semua field yang dibutuhkan pada form (*name, description, amount, and price of product*) agar user bisa input field via text yang diketik. Untuk fields amount dan price, ada restriksi input, yaitu hanya input numerik yang valid, serta field tidak boleh null. Sedangkan untuk fields name dan description, restriksinya hanya bahwa field tidak boleh null.
+
+Ada elemen input Flutter lain yang tidak saya gunakan, beberapa di antaranya:
+
+`Radio()` : Digunakan untuk memberikan pilihan antara beberapa *value* yang *mutually exclusive*;
+
+`Checkbox()` : Bisa menunjukkan jika *value true* atau *false*;
+
+`Slider()` : Memberikan pilihan pada suatu *range value*;
+
+dan lain sebagainya.
+
+## Bagaimana cara kamu mengatur tema (theme) dalam aplikasi Flutter agar aplikasi yang dibuat konsisten? Apakah kamu mengimplementasikan tema pada aplikasi yang kamu buat?
+
+Tema aplikasi pada Flutter dapat didefinisikan pada file `main.dart` dan dapat digunakan secara konsisten pada seluruh bagian aplikasi dengan mendefinisikan theme dan men-*detail* tema yang diinginkan dalam `ThemeData` pada `MaterialApp`. Tema ini lalu dapat digunakan di seluruh aplikasi dengan menggunakan method `Theme.of(context)` ketika memberi spesifikasi pada suatu widget. Method ini akan mencari ke widget tree lalu mengambil tema terdekat yang ada. Jika tema tidak didefinisikan, Flutter memiliki tema *default* yang akan digunakan.
+
+Saya pribadi baru hanya mendefinisikan warna utama yang digunakan pada aplikasi dan belum menerapkan tema yang konsisten karena belum memikirkan desain yang cocok.
+
+## Bagaimana cara kamu menangani navigasi dalam aplikasi dengan banyak halaman pada Flutter?
+
+Untuk mengimplementasikan navigasi pada aplikasi Flutter, ada sistem yang cukup lengkap untuk melakukan navigasi antar page. Salah satu cara yang dapat digunakan untuk berpindah page  adalah dengan menggunakan *widget* `Navigator`. *Widget* `Navigator` menampilkan page-page yang ada dalam sebuah *stack*. Untuk menavigasi sebuah page baru, `Navigator` dapat diakses melalui `BuildContext` dan memanggil method-method `Navigator`, seperti `push()`, `pop()`, serta `pushReplacement()`.
+
+Method `push()` menambahkan suatu *route* ke dalam *stack* *route* yang dikelola oleh `Navigator`. Method ini menyebabkan *route* yang ditambahkan berada pada paling atas stack, sehingga *route* yang baru saja ditambahkan tersebut akan muncul dan ditampilkan kepada pengguna.
+
+Method `pop()` menghapus *route* yang sedang ditampilkan kepada pengguna (atau dalam kata lain, *route* yang berada pada paling atas *stack*) dari *stack* *route* yang dikelola oleh Navigator. Method ini menyebabkan aplikasi untuk berpindah dari *route* yang sedang ditampilkan kepada pengguna ke *route* yang berada di bawahnya pada *stack* yang dikelola `Navigator`.
+
+Method `pushReplacement()` menghapus *route* yang sedang ditampilkan kepada pengguna dan menggantinya dengan suatu *route*. Method ini menyebabkan aplikasi untuk berpindah dari *route* yang sedang ditampilkan kepada pengguna ke suatu *route* yang diberikan. Pada *stack* *route* yang dikelola `Navigator`, *route* lama pada atas *stack* akan digantikan secara langsung oleh *route* baru yang diberikan tanpa mengubah kondisi elemen *stack* yang berada di bawahnya.
+
+Walaupun `push()` dan `pushReplacement()` sekilas terlihat mirip, namun perbedaan kedua *method* tersebut terletak pada apa yang dilakukan kepada *route* yang berada pada atas *stack*. `push()` akan menambahkan *route* baru diatas *route* yang sudah ada pada atas *stack*, sedangkan `pushReplacement()` menggantikan *route* yang sudah ada pada atas *stack* dengan *route* baru tersebut. Penting juga untuk memperhatikan kemungkinan urutan dan isi dari *stack*, karena jika kondisi *stack* kosong serta kita menekan tombol **Back** pada gawai, maka sistem akan keluar dari aplikasi tersebut.
+
 # Tugas 7
 
 ## Jelaskan apa yang dimaksud dengan *stateless widget dan stateful widget*, dan jelaskan perbedaan dari keduanya.
