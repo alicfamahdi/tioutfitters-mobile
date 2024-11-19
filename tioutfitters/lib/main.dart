@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tioutfitters/screens/menu.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:tioutfitters/screens/login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,13 +9,17 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
+      return Provider(
+      create: (_) {
+        CookieRequest request = CookieRequest();
+        return request;
+      },
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
         // This is the theme of your application.
         //
         // TRY THIS: Try running your application with "flutter run". You'll see
@@ -35,7 +41,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.pink,
         ).copyWith(secondary: Colors.blueAccent[700]),
       ),
-      home: MyHomePage(),
+      home: const LoginPage()
+      )
     );
   }
 }
