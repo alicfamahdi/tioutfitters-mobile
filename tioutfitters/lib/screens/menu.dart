@@ -5,7 +5,7 @@ import 'package:tioutfitters/widgets/left_drawer.dart';
 class MyHomePage extends StatelessWidget {
 
   final List<ItemHomepage> items = [
-      ItemHomepage("Lihat Daftar Produk", Icons.shopping_cart_outlined),
+      ItemHomepage("Lihat Daftar Product", Icons.shopping_cart_outlined),
       ItemHomepage("Add Product", Icons.add_box),
       ItemHomepage("Logout", Icons.logout),
   ];

@@ -3,28 +3,41 @@
 # Tugas 9
 ##  Jelaskan mengapa kita perlu membuat model untuk melakukan pengambilan ataupun pengiriman data JSON? Apakah akan terjadi error jika kita tidak membuat model terlebih dahulu?
 
-
+Pembuatan model dari suatu data JSON berguna untuk merepresentasikan dan mengatur data secara efisien. Belum tentu akan terjadi error jika tidak dibuat model terlebih dahulu, tetapi data akan lebih konsisten dan kesalahan akan lebih sedikit jika menggunakan model.
 
 ##  Jelaskan fungsi dari library *http* yang sudah kamu implementasikan pada tugas ini
 
-
+http library digunakan untuk komunikasi antara Flutter dan server. Ini membolehkan Flutter untuk mengirim HTTP request, serta meng-handle status respons dari server. 
 
 ##  Jelaskan fungsi dari CookieRequest dan jelaskan mengapa *instance* CookieRequest perlu untuk dibagikan ke semua komponen di aplikasi Flutter.
 
-
+CookieRequest berfungsi untuk mengelola cookies pada suatu sesi autentikasi. CookieRequest digunakan di semua komponen aplikasi agar sesi autentikasi pengguna tetap terjaga dan tidak perlu login ulang setiap pergantian page.
 
 ##  Jelaskan mekanisme pengiriman data mulai dari input hingga dapat ditampilkan pada Flutter.
 
-
+- Pengguna menginput data pada form yang diberikan pada aplikasi Flutter.
+- Data dikirim ke server Django melalui HTTP request dalam format JSON.
+- Server memproses data via validasi atau menyimpan ke database, lalu mengirim kembali ke Flutter.
+- Data yang telah divalidasi diparse oleh Flutter lalu ditunjukkan ke pengguna.
 
 ##  Jelaskan mekanisme autentikasi dari login, register, hingga logout. Mulai dari input data akun pada Flutter ke Django hingga selesainya proses autentikasi oleh Django dan tampilnya menu pada Flutter.
 
+- Autentikasi bermulai dari register yang mengirim data akun ke endpoint register di Django, dan disimpan setelah validasi.
+- Saat login, kredensial login dikirim ke endpoint login Django. Jika valid, akan mengembalikan cookie sesi.
+- Jika login berhasil, aplikasi mengambil data yang sesuai dengan pengguna pada server lalu menampilkannya.
+- Logout dilakukan dengan mengirim permintaan ke endpoint logout. Jika berhasil, cookie sesi akan dihapus.
 
 
 ##  Jelaskan bagaimana cara kamu mengimplementasikan *checklist* di atas secara *step-by-step*! (bukan hanya sekadar mengikuti tutorial).
 
-
-
+- Start app authentication baru pada project Django
+- Menambahkan INSTALLED_APPS dan konfigurasi settings.py lainnya
+- Membuat function login, register, dan logout pada views.py authentication
+- Membuat page login dan register pada aplikasi Flutter
+- Menambahkan CookieRequest pada setiap page aplikasi
+- Menyocokkan url agar bisa mengirim HTTP request dengan benar
+- Membuat model dari JSON data Django
+- Membuat page list Product dan page detail Product
 
 # Tugas 8
 
